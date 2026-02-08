@@ -1,6 +1,7 @@
 {
   "name": "kaalcal-vercel",
   "version": "1.0.0", 
+  "type": "module",
   "description": "KAALCAL26 Website with Vercel Serverless Backend",
   "main": "api/contact.js",
   "scripts": {
