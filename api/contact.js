@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import nodemailer from 'nodemailer';
-import { body, validationResult } from 'express-validator';
+const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
+const { body, validationResult } = require('express-validator');
 
 // MongoDB Connection (cached)
 let cached = global.mongoose;
@@ -15,10 +15,7 @@ async function connectDB() {
 
     if (!cached.promise) {
         const connString = process.env.MONGO_URI || 'mongodb://localhost:27017/kaalcal';
-        cached.promise = mongoose.connect(connString, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }).then(mongoose => mongoose);
+        cached.promise = mongoose.connect(connString);
     }
 
     cached.conn = await cached.promise;
