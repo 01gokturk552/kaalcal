@@ -1,0 +1,23 @@
+{
+  "name": "kaalcal-vercel",
+  "version": "1.0.0", 
+  "description": "KAALCAL26 Website with Vercel Serverless Backend",
+  "main": "api/contact.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step needed for static site'",
+    "start": "vercel dev", 
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "mongoose": "^8.0.3",
+    "nodemailer": "^6.9.7",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "vercel": "^32.4.1"
+  },
+  "keywords": ["kaalcal", "vercel", "serverless", "mongodb", "email"],
+  "author": "KAALCAL Team",
+  "license": "MIT"
+}

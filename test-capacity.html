@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapasite Testi - KAALCAL26</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container" style="padding: 2rem;">
+        <h1 style="color: var(--gold); text-align: center; margin-bottom: 2rem;">KAALCAL26 Kapasite Test Paneli</h1>
+        
+        <div class="test-section">
+            <h2>Mevcut Durum</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="currentParticipants">0</div>
+                    <div class="stat-label">Katılımcı</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="approvedDelegates">0</div>
+                    <div class="stat-label">Onaylı Delege</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="delegateStatus">Açık</div>
+                    <div class="stat-label">Delege Başvurusu</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test İşlemleri</h2>
+            <div class="test-buttons">
+                <button onclick="testDelegateApproval()" class="btn btn-primary">
+                    <i class="fas fa-user-tie"></i> Delege Başvurusu Onayla
+                </button>
+                <button onclick="testDelegationApproval()" class="btn btn-primary">
+                    <i class="fas fa-users"></i> Delegasyon Başvurusu Onayla
+                </button>
+                <button onclick="testTeamApproval()" class="btn btn-primary">
+                    <i class="fas fa-users-cog"></i> Ekip Başvurusu Onayla
+                </button>
+                <button onclick="simulateLimit()" class="btn btn-secondary">
+                    <i class="fas fa-exclamation-triangle"></i> 1000 Limitine Ulaş
+                </button>
+                <button onclick="resetCounters()" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> Sıfırla
+                </button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Sistem Mesajları</h2>
+            <div id="systemMessages" class="messages-container">
+                <p>Sistem mesajları burada görünecek...</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .test-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+        }
+        
+        .test-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .messages-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid;
+        }
+        
+        .message.success {
+            background: rgba(40, 167, 69, 0.2);
+            border-left-color: #28a745;
+            color: #28a745;
+        }
+        
+        .message.warning {
+            background: rgba(255, 193, 7, 0.2);
+            border-left-color: #ffc107;
+            color: #ffc107;
+        }
+        
+        .message.info {
+            background: rgba(23, 162, 184, 0.2);
+            border-left-color: #17a2b4;
+            color: #17a2b4;
+        }
+    </style>
+
+    <script src="script.js"></script>
+    <script>
+        function updateDisplay() {
+            const stats = window.KAALCAL.getStats();
+            document.getElementById('currentParticipants').textContent = stats.participants;
+            document.getElementById('approvedDelegates').textContent = stats.approvedDelegates;
+            document.getElementById('delegateStatus').textContent = stats.delegateApplicationsOpen ? 'Açık' : 'Kapalı';
+            document.getElementById('delegateStatus').style.color = stats.delegateApplicationsOpen ? 'var(--gold)' : '#dc3545';
+        }
+
+        function addMessage(message, type = 'info') {
+            const messagesContainer = document.getElementById('systemMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function testDelegateApproval() {
+            const result = window.KAALCAL.approveApplication('delegate');
+            addMessage(`Delege başvurusu onaylandı. Yeni katılımcı sayısı: ${result}`, 'success');
+            updateDisplay();
+        }
+
+        function testDelegationApproval() {
+            const result = window.KAALCAL.approveApplication('delegation');
+            addMessage(`Delegasyon başvurusu onaylandı. Yeni katılımcı sayısı: ${result}`, 'success');
+            updateDisplay();
+        }
+
+        function testTeamApproval() {
+            const result = window.KAALCAL.approveApplication('team');
+            addMessage(`Ekip başvurusu onaylandı. Yeni katılımcı sayısı: ${result}`, 'success');
+            updateDisplay();
+        }
+
+        function simulateLimit() {
+            addMessage('1000 delege limitine ulaşma simülasyonu başlatılıyor...', 'info');
+            
+            // Set current approved delegates to 999
+            localStorage.setItem('kaalcal_approved_delegates', '999');
+            
+            // Approve one more to trigger the limit
+            setTimeout(() => {
+                testDelegateApproval();
+            }, 1000);
+        }
+
+        function resetCounters() {
+            window.KAALCAL.resetCounters();
+            addMessage('Tüm sayaçlar sıfırlandı', 'info');
+            updateDisplay();
+        }
+
+        // Initialize display on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.KAALCAL) {
+                    updateDisplay();
+                    addMessage('Kapasite kontrol sistemi başarıyla yüklendi', 'success');
+                } else {
+                    addMessage('KAALCAL sistemi bulunamadı', 'warning');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
