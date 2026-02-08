@@ -828,12 +828,12 @@ class AdminPanel {
             this.loadApplications();
             this.closeModal();
 
-            // Send notifications if approved
-            if (status === 'approved') {
+            // Send notifications for both approved and rejected
+            if (status === 'approved' || status === 'rejected') {
                 this.sendNotifications(application);
                 
-                // Update participant count and check delegate limit
-                if (window.KAALCAL) {
+                // Update participant count and check delegate limit (only for approved)
+                if (status === 'approved' && window.KAALCAL) {
                     const newCount = window.KAALCAL.approveApplication(application.type);
                     console.log(`Participant count updated to: ${newCount}`);
                     
@@ -842,11 +842,7 @@ class AdminPanel {
                         const stats = window.KAALCAL.getStats();
                         if (stats.approvedDelegates >= 1000) {
                             this.showAdminNotification('Delege başvuruları 1000 kişi limitine ulaştı ve otomatik olarak kapatıldı.', 'warning');
-                        } else {
-                            this.showAdminNotification(`Delege başvurusu onaylandı. Toplam onaylı delege: ${stats.approvedDelegates}/1000`, 'success');
                         }
-                    } else {
-                        this.showAdminNotification(`Başvuru onaylandı. Toplam katılımcı: ${window.KAALCAL.getStats().participants}`, 'success');
                     }
                 }
             }
@@ -874,32 +870,12 @@ class AdminPanel {
     }
 
     async sendEmailNotification(application) {
-        // EmailJS Implementation (Frontend-only solution)
-        const emailData = {
-            service_id: 'YOUR_EMAILJS_SERVICE_ID',
-            template_id: 'YOUR_EMAILJS_TEMPLATE_ID',
-            user_id: 'YOUR_EMAILJS_PUBLIC_KEY',
-            template_params: {
-                to_email: application.email,
-                to_name: application.fullName,
-                application_type: this.getTypeLabel(application.type),
-                application_id: application.id,
-                event_name: 'KAALCAL26',
-                approval_date: new Date().toLocaleDateString('tr-TR'),
-                from_name: 'KAALCAL26 Ekibi'
-            }
-        };
-
-        // Using EmailJS (you'll need to set up EmailJS account)
-        if (window.emailjs) {
-            await window.emailjs.send(
-                emailData.service_id,
-                emailData.template_id,
-                emailData.template_params,
-                emailData.user_id
-            );
+        // Use backend API for email sending
+        try {
+            await this.sendEmailViaBackend(application);
             console.log('Email sent successfully to:', application.email);
-        } else {
+        } catch (error) {
+            console.error('Email sending failed:', error);
             // Fallback: Log email for manual sending
             this.logNotification('email', application);
         }
@@ -965,7 +941,8 @@ class AdminPanel {
                     email: application.email,
                     name: application.fullName,
                     applicationType: this.getTypeLabel(application.type),
-                    applicationId: application.id
+                    applicationId: application.id,
+                    status: application.status
                 })
             });
 
