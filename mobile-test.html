@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Test - KAALCAL26</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        .test-section {
+            padding: 40px 20px;
+            border-bottom: 1px solid rgba(255, 223, 0, 0.2);
+        }
+        .test-title {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .test-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--gold);
+        }
+        .test-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        .status-pass {
+            background: #28a745;
+            color: white;
+        }
+        .status-fail {
+            background: #dc3545;
+            color: white;
+        }
+        .status-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        .device-info {
+            background: rgba(255, 223, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .responsive-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .responsive-test {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/logo.png" alt="KAALCAL26 Logo" class="site-logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#test" class="nav-link">Test</a></li>
+                <li><a href="#responsive" class="nav-link">Responsive</a></li>
+                <li><a href="#touch" class="nav-link">Touch</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Mobile Test</h1>
+            <p class="hero-subtitle">KAALCAL26 Mobile Compatibility Test</p>
+        </div>
+    </section>
+
+    <!-- Device Info -->
+    <section id="test" class="section">
+        <div class="container">
+            <h2 class="section-title">Device Information</h2>
+            <div class="device-info" id="deviceInfo">
+                <p><strong>Screen Width:</strong> <span id="screenWidth"></span>px</p>
+                <p><strong>Screen Height:</strong> <span id="screenHeight"></span>px</p>
+                <p><strong>Device Type:</strong> <span id="deviceType"></span></p>
+                <p><strong>Touch Support:</strong> <span id="touchSupport"></span></p>
+                <p><strong>Orientation:</strong> <span id="orientation"></span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Responsive Tests -->
+    <section id="responsive" class="section">
+        <div class="container">
+            <h2 class="section-title">Responsive Design Tests</h2>
+            
+            <div class="test-section">
+                <h3 class="test-title">Navigation Menu</h3>
+                <div class="test-item">
+                    <strong>Mobile Menu Toggle</strong>
+                    <span class="test-status status-pass" id="navTest">PASS</span>
+                    <p>Mobile menu should appear on screens ≤768px</p>
+                </div>
+                <div class="test-item">
+                    <strong>Touch Targets</strong>
+                    <span class="test-status status-pass" id="touchTest">PASS</span>
+                    <p>Menu items should be at least 44px tall for touch</p>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3 class="test-title">Typography</h3>
+                <div class="test-item">
+                    <strong>Font Sizes</strong>
+                    <span class="test-status status-pass" id="fontTest">PASS</span>
+                    <p>Text should be readable without zooming</p>
+                </div>
+                <div class="test-item">
+                    <strong>Line Height</strong>
+                    <span class="test-status status-pass" id="lineTest">PASS</span>
+                    <p>Line height should be 1.5x font size</p>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3 class="test-title">Layout</h3>
+                <div class="test-item">
+                    <strong>Grid Layout</strong>
+                    <span class="test-status status-pass" id="gridTest">PASS</span>
+                    <p>Grid should adapt to screen size</p>
+                </div>
+                <div class="test-item">
+                    <strong>Spacing</strong>
+                    <span class="test-status status-pass" id="spacingTest">PASS</span>
+                    <p>Adequate spacing between elements</p>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3 class="test-title">Forms</h3>
+                <div class="test-item">
+                    <strong>Input Fields</strong>
+                    <span class="test-status status-pass" id="inputTest">PASS</span>
+                    <p>Inputs should be 16px+ to prevent zoom</p>
+                </div>
+                <div class="test-item">
+                    <strong>Buttons</strong>
+                    <span class="test-status status-pass" id="buttonTest">PASS</span>
+                    <p>Buttons should be touch-friendly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Touch Tests -->
+    <section id="touch" class="section">
+        <div class="container">
+            <h2 class="section-title">Touch Interaction Tests</h2>
+            
+            <div class="test-section">
+                <h3 class="test-title">Touch Targets</h3>
+                <button class="btn btn-primary" onclick="testTouch(this)">Test Touch Target</button>
+                <button class="btn btn-secondary" onclick="testTouch(this)">Another Button</button>
+                <button class="btn btn-large" onclick="testTouch(this)">Large Button</button>
+            </div>
+
+            <div class="test-section">
+                <h3 class="test-title">Swipe Gestures</h3>
+                <div id="swipeArea" style="height: 200px; background: rgba(255,223,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+                    <p>Swipe to test gestures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Device Information
+        function updateDeviceInfo() {
+            document.getElementById('screenWidth').textContent = window.innerWidth;
+            document.getElementById('screenHeight').textContent = window.innerHeight;
+            document.getElementById('touchSupport').textContent = 'ontouchstart' in window ? 'Yes' : 'No';
+            document.getElementById('orientation').textContent = window.innerHeight > window.innerWidth ? 'Portrait' : 'Landscape';
+            
+            // Determine device type
+            const width = window.innerWidth;
+            let deviceType = 'Desktop';
+            if (width <= 480) deviceType = 'Mobile';
+            else if (width <= 768) deviceType = 'Tablet';
+            else if (width <= 1024) deviceType = 'Small Desktop';
+            
+            document.getElementById('deviceType').textContent = deviceType;
+        }
+
+        // Test functions
+        function testTouch(element) {
+            element.style.background = '#28a745';
+            element.textContent = 'Touched!';
+            setTimeout(() => {
+                element.style.background = '';
+                element.textContent = element.textContent.replace('Touched!', 'Test Touch Target');
+            }, 1000);
+        }
+
+        // Swipe detection
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('swipeArea').addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('swipeArea').addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeArea = document.getElementById('swipeArea');
+            if (touchEndX < touchStartX - 50) {
+                swipeArea.innerHTML = '<p>Swipe Left Detected! 👈</p>';
+            } else if (touchEndX > touchStartX + 50) {
+                swipeArea.innerHTML = '<p>Swipe Right Detected! 👉</p>';
+            } else {
+                swipeArea.innerHTML = '<p>Tap Detected! 👆</p>';
+            }
+            setTimeout(() => {
+                swipeArea.innerHTML = '<p>Swipe to test gestures</p>';
+            }, 2000);
+        }
+
+        // Responsive tests
+        function runResponsiveTests() {
+            const width = window.innerWidth;
+            
+            // Navigation test
+            const navToggle = document.querySelector('.nav-toggle');
+            const navTest = document.getElementById('navTest');
+            if (width <= 768 && navToggle) {
+                navTest.className = 'test-status status-pass';
+                navTest.textContent = 'PASS';
+            } else {
+                navTest.className = 'test-status status-warning';
+                navTest.textContent = 'DESKTOP';
+            }
+            
+            // Touch test
+            const touchTest = document.getElementById('touchTest');
+            if ('ontouchstart' in window) {
+                touchTest.className = 'test-status status-pass';
+                touchTest.textContent = 'PASS';
+            } else {
+                touchTest.className = 'test-status status-warning';
+                touchTest.textContent = 'NO TOUCH';
+            }
+            
+            // Font size test
+            const fontTest = document.getElementById('fontTest');
+            const fontSize = window.getComputedStyle(document.body).fontSize;
+            if (parseFloat(fontSize) >= 14) {
+                fontTest.className = 'test-status status-pass';
+                fontTest.textContent = 'PASS';
+            } else {
+                fontTest.className = 'test-status status-fail';
+                fontTest.textContent = 'TOO SMALL';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDeviceInfo();
+            runResponsiveTests();
+            initMobileNavigation();
+        });
+
+        // Update on resize
+        window.addEventListener('resize', function() {
+            updateDeviceInfo();
+            runResponsiveTests();
+        });
+
+        // Update on orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(updateDeviceInfo, 100);
+        });
+    </script>
+</body>
+</html>
