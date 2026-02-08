@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAALCAL26</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://via.placeholder.com/32x32/4D0000/FFDF00?text=KA">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/180x180/4D0000/FFDF00?text=KA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="application-status.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>KAALCAL26</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#anasayfa" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#tarih-mekan" class="nav-link">Tarih & Mekan</a></li>
+                <li><a href="#basvuru" class="nav-link">Başvuru</a></li>
+                <li><a href="#program" class="nav-link">Program</a></li>
+                <li><a href="#komiteler" class="nav-link">Komiteler</a></li>
+                <li><a href="#ekip" class="nav-link">Ekibimiz</a></li>
+                <li><a href="#sponsorlar" class="nav-link">Sponsorlarımız</a></li>
+                <li><a href="#iletisim" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="anasayfa" class="hero-section">
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">KAALCAL26</h1>
+            <p class="hero-subtitle">Büyük Buluşmaya Geri Sayım</p>
+            
+            <!-- Countdown Timer -->
+            <div class="hero-countdown">
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Gün</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Saat</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Dakika</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Saniye</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#basvuru" class="btn btn-primary">
+                    <span class="btn-text">Başvur</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#program" class="btn btn-secondary">
+                    <span class="btn-text">Programı Gör</span>
+                    <i class="fas fa-calendar"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Date & Location Section -->
+    <section id="tarih-mekan" class="date-location-section section-light">
+        <div class="container">
+            <h2 class="section-title">Tarih & Mekan</h2>
+            <div class="date-location-container">
+                <div class="date-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Tarih</h3>
+                    <div class="date-info">
+                        <p>28–29 Mart 2026</p>
+                        <p>Cumartesi - Pazar</p>
+                        <p>09:00 - 18:00</p>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Mekan</h3>
+                    <div class="location-info">
+                        <p>Medipol Üniversitesi</p>
+                        <p>Kavacık Kampüsü</p>
+                        <p>İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3006.9458!2d29.0724!3d41.1034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac7e7b5b5b5b5%3A0x5b5b5b5b5b5b5b5!2sMedipol+%C3%9Cniversitesi+Kavac%C4%B1k+Kamp%C3%BCs%C3%BC!5e0!3m2!1sen!2str!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section id="basvuru" class="section section-light">
+        <div class="container">
+            <h2 class="section-title">Başvuru</h2>
+            <p class="section-subtitle">KAALCAL'26 etkinliğimize başvurun! Size en uygun başvuru seçeneğini seçin</p>
+            
+            <!-- Application Stats -->
+            <div class="application-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="participantCount">0</div>
+                    <div class="stat-label">Katılımcı</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Komite</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Gün</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="delegateStatus">Açık</div>
+                    <div class="stat-label">Delege Başvurusu</div>
+                </div>
+            </div>
+            
+            <div class="application-buttons">
+                <a href="delegate-application.html" class="btn btn-primary btn-large" id="delegateApplicationBtn">
+                    <div class="btn-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-title">Delege Başvurusu</span>
+                        <span class="btn-description">Kurumunuzu temsil edin</span>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                <a href="delegation-application.html" class="btn btn-primary btn-large">
+                    <div class="btn-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-title">Delegasyon Başvurusu</span>
+                        <span class="btn-description">Kurumunuzdan grup halinde katılın</span>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                <a href="team-application.html" class="btn btn-primary btn-large">
+                    <div class="btn-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-title">Ekip Başvurusu</span>
+                        <span class="btn-description">Ekiple katılın</span>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Application Status Message -->
+            <div id="applicationStatusMessage" class="application-status-message" style="display: none;">
+                <div class="status-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="status-content">
+                    <h3>Başvurular Kapalı</h3>
+                    <p>Delege başvuru limitine ulaşıldığı için yeni başvurular alınmamaktadır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Flow Section -->
+    <section id="program" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Program Akışı</h2>
+            <div class="program-container">
+                <div class="program-day">
+                    <h3>1. Gün - 28 Mart Cumartesi</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-content">
+                                <h4>Kayıt ve Karşılama</h4>
+                                <p>Katılımcıların kayıt işlemleri ve kahvaltı</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:00</div>
+                            <div class="timeline-content">
+                                <h4>Açılış Töreni</h4>
+                                <p>Okul yönetimi konuşmaları ve tanışma etkinlikleri</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">11:30</div>
+                            <div class="timeline-content">
+                                <h4>Panel Oturumları</h4>
+                                <p>Eğitim ve kariyer üzerine paneller</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-content">
+                                <h4>Öğle Yemeği</h4>
+                                <p>Okul bahçesinde özel menü</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-content">
+                                <h4>Atölye Çalışmaları</h4>
+                                <p>Farklı alanlarda atölye etkinlikleri</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">17:00</div>
+                            <div class="timeline-content">
+                                <h4>Kapanış ve Fotoğraf Çekimi</h4>
+                                <p>Günün kapanışı ve anı fotoğrafları</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="program-day">
+                    <h3>2. Gün - 29 Mart Pazar</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:00</div>
+                            <div class="timeline-content">
+                                <h4>Kahvaltı ve Kayıt</h4>
+                                <p>İkinci gün başlangıcı</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">11:00</div>
+                            <div class="timeline-content">
+                                <h4>Spor Etkinlikleri</h4>
+                                <p>Okul spor sahasında turnuvalar</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-content">
+                                <h4>Öğle Yemeği</h4>
+                                <p>Özel menü ve mola</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-content">
+                                <h4>Kültürel Etkinlikler</h4>
+                                <p>Müzik, tiyatro ve sanat gösterileri</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:00</div>
+                            <div class="timeline-content">
+                                <h4>Ödül Töreni</h4>
+                                <p>Yarışmalar ve etkinlik ödülleri</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">17:30</div>
+                            <div class="timeline-content">
+                                <h4>Kapanış Töreni</h4>
+                                <p>Etkinlik kapanışı ve veda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committees Section -->
+    <section id="komiteler" class="section">
+        <div class="container">
+            <h2 class="section-title">Komiteler</h2>
+            <div class="committees-grid">
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>HUKUK Komitesi</h3>
+                    <p>Etkinliğin yasal çerçevesi, kurallar ve düzenlemelerden sorumludur. Hukuki uyumluluk ve resmi işlemleri yönetirler.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>EDEBİYAT Komitesi</h3>
+                    <p>Edebiyat etkinlikleri, yazım atölyeleri ve kitap tartışmalarından sorumludur. Kültürel içerikleri geliştirirler.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>SANAT Komitesi</h3>
+                    <p>Görsel sanatlar, performanslar ve sanatsal etkinliklerden sorumludur. Yaratıcı ifade ve estetik düzenlemeleri yaparlar.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <h3>TEOLOJİ Komitesi</h3>
+                    <p>Dini içerikler, manevi etkinlikler ve inanç temalı tartışmalardan sorumludur. Manevi yönü koordine ederler.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>SİYASET Komitesi</h3>
+                    <p>Siyasi tartışmalar, yönetim simülasyonları ve kamu yönetimi etkinliklerinden sorumludur. Siyasi farkındalık yaratırlar.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>FELSEFE Komitesi</h3>
+                    <p>Felsefi tartışmalar, düşünce atölyeleri ve mantık etkinliklerinden sorumludur. Eleştirel düşünceyi geliştirirler.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>SOSYOLOJİ Komitesi</h3>
+                    <p>Sosyal araştırmalar, toplum dinamikleri ve grup ilişkilerinden sorumludur. Sosyal yapıyı analiz ederler.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <h3>TARİH Komitesi</h3>
+                    <p>Tarihi sunumlar, geçmiş analizleri ve kronoloji etkinliklerinden sorumludur. Tarihi bilinci canlandırırlar.</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>PSİKOLOJİ Komitesi</h3>
+                    <p>Zihinsel sağlık, davranış analizi ve psikolojik destekten sorumludur. Katılımcı motivasyonunu yönetirler.</p>
+                </div>
+            </div>
+            
+            <div class="committee-guide">
+                <h3>Komite Çalışma Rehberi</h3>
+                <p>Her komite, etkinliğin başarısı için kritik bir rol oynamaktadır. Komite üyeleri, düzenli toplantılar yaparak görevlerini koordine eder ve etkinlik öncesinde hazırlıklarını tamamlarlar. Komiteler arası işbirliği, etkinliğin sorunsuz geçmesi için esastır. Her komite kendi alanında uzmanlaşmış olsa da, genel hedef doğrultusunda ortak çalışma kültürü benimsemektedir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="ekip" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Ekibimiz</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/150x150/8B0000/FFD700?text=AD" alt="Team Member">
+                    </div>
+                    <h3>Ahmet Yılmaz</h3>
+                    <p class="team-role">Etkinlik Koordinatörü</p>
+                    <p class="team-subtitle">Etkinlik yönetimi ve planlama</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/150x150/8B0000/FFD700?text=SO" alt="Team Member">
+                    </div>
+                    <h3>Ayşe Öztürk</h3>
+                    <p class="team-role">İletişim Sorumlusu</p>
+                    <p class="team-subtitle">Medya ilişkileri ve tanıtım</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/150x150/8B0000/FFD700?text=MD" alt="Team Member">
+                    </div>
+                    <h3>Mehmet Demir</h3>
+                    <p class="team-role">Lojistik Yöneticisi</p>
+                    <p class="team-subtitle">Mekan ve ekipman yönetimi</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/150x150/8B0000/FFD700?text=ZK" alt="Team Member">
+                    </div>
+                    <h3>Zeynep Kaya</h3>
+                    <p class="team-role">Medya Direktörü</p>
+                    <p class="team-subtitle">Fotoğraf ve video yönetimi</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/150x150/8B0000/FFD700?text=MA" alt="Team Member">
+                    </div>
+                    <h3>Mustafa Arslan</h3>
+                    <p class="team-role">Güvenlik Amiri</p>
+                    <p class="team-subtitle">Etkinlik güvenliği ve düzen</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/150x150/8B0000/FFD700?text=EC" alt="Team Member">
+                    </div>
+                    <h3>Elif Çelik</h3>
+                    <p class="team-role">İnsan Kaynakları</p>
+                    <p class="team-subtitle">Gönüllü yönetimi ve Koordinasyon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section id="sponsorlar" class="section">
+        <div class="container">
+            <h2 class="section-title">Sponsorlarımız</h2>
+            <div class="sponsors-grid">
+                <div class="sponsor-card">
+                    <img src="https://via.placeholder.com/200x120/FFFFFF/8B0000?text=SPONSOR+1" alt="Sponsor">
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://via.placeholder.com/200x120/FFFFFF/8B0000?text=SPONSOR+2" alt="Sponsor">
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://via.placeholder.com/200x120/FFFFFF/8B0000?text=SPONSOR+3" alt="Sponsor">
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://via.placeholder.com/200x120/FFFFFF/8B0000?text=SPONSOR+4" alt="Sponsor">
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://via.placeholder.com/200x120/FFFFFF/8B0000?text=SPONSOR+5" alt="Sponsor">
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://via.placeholder.com/200x120/FFFFFF/8B0000?text=SPONSOR+6" alt="Sponsor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Medipol Üniversitesi Kavacık Kampüsü, Kavacık, İstanbul, Türkiye</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>E-posta</h4>
+                            <p>kaal55499@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>İletişim Hattı</h4>
+                            <p>Deniz Ela ŞEN Genel Koordinatör - +90 532 251 75 28</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Adınız Soyadınız" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="E-posta Adresiniz" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Telefon Numaranız" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Mesajınız" rows="5" required class="form-textarea"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Mesaj Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KAALCAL26</h3>
+                    <p>İleri teknoloji ve inovasyon buluşması</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="#anasayfa">Ana Sayfa</a></li>
+                        <li><a href="#basvuru">Başvuru</a></li>
+                        <li><a href="#iletisim">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>KAALCAL26</h3>
+                    <p>İleri teknoloji ve inovasyon buluşması</p>
+                    <div class="social-links">
+                        <a href="admin.html" class="admin-link" title="Admin Panel">
+                            <i class="fas fa-cog"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KAALCAL26. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize application status checker for homepage buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const appStatusChecker = new ApplicationStatusChecker();
+            appStatusChecker.updateHomepageButtons();
+        });
+    </script>
+</body>
+</html>

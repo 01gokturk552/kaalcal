@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - KAALCAL26</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://via.placeholder.com/32x32/4D0000/FFDF00?text=KA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>KAALCAL26 Admin</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link">Panel</a></li>
+                <li><a href="#applications" class="nav-link">Başvurular</a></li>
+                <li><a href="admin-messages.html" class="nav-link">Mesajlar</a></li>
+                <li><a href="#notifications" class="nav-link">Bildirimler</a></li>
+                <li><a href="#users" class="nav-link">Kullanıcılar</a></li>
+                <li><a href="index.html" class="nav-link">Site</a></li>
+                <li><a href="#" id="logoutBtn" class="nav-link">Çıkış</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="admin-login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-form">
+                    <div class="login-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h2>Admin Girişi</h2>
+                        <p>KAALCAL26 Yönetim Paneli</p>
+                    </div>
+                    <form id="adminLoginForm">
+                        <div class="form-group">
+                            <label for="username">Kullanıcı Adı</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Şifre</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" name="password" required>
+                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> 
+                            <span>Giriş Yap</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="dashboardSection" class="admin-dashboard-section" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="header-content">
+                    <h1>Admin Panel</h1>
+                    <p>KAALCAL26 Etkinlik Yönetim Sistemi</p>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="user-details">
+                        <span id="currentUser">Admin Kullanıcı</span>
+                        <span id="userRole">Süper Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalApplications">0</h3>
+                        <p>Toplam Başvuru</p>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>%12 artış</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="pendingApplications">0</h3>
+                        <p>Bekleyen Başvuru</p>
+                        <div class="stat-change neutral">
+                            <i class="fas fa-minus"></i>
+                            <span>Değişmedi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="approvedApplications">0</h3>
+                        <p>Onaylanan Başvuru</p>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>%8 artış</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="rejectedApplications">0</h3>
+                        <p>Reddedilen Başvuru</p>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>%3 düşüş</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Table -->
+            <div class="applications-section">
+                <div class="section-header">
+                    <h2>Başvurular</h2>
+                    <div class="filters">
+                        <select id="statusFilter">
+                            <option value="all">Tümü</option>
+                            <option value="pending">Bekleyen</option>
+                            <option value="approved">Onaylanan</option>
+                            <option value="rejected">Reddedilen</option>
+                        </select>
+                        <select id="typeFilter">
+                            <option value="all">Tüm Türler</option>
+                            <option value="delegate">Delege</option>
+                            <option value="delegation">Delegasyon</option>
+                            <option value="team">Ekip</option>
+                        </select>
+                        <input type="text" id="searchInput" placeholder="Ara...">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="applications-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tür</th>
+                                <th>Ad Soyad</th>
+                                <th>E-posta</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                                <th>Atanan</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsTableBody">
+                            <!-- Applications will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Application Controls Section -->
+            <div class="application-controls-section">
+                <div class="section-header">
+                    <h2>Başvuru Kontrol Paneli</h2>
+                    <p>Başvuru türlerini açıp kapatın</p>
+                </div>
+                
+                <div class="controls-grid" id="applicationControls">
+                    <div class="application-control-card">
+                        <div class="control-header">
+                            <h3>Delege Başvuruları</h3>
+                            <div class="status-badge" id="delegateControlStatus">Açık</div>
+                        </div>
+                        <div class="control-body">
+                            <div class="control-info">
+                                <p><strong>Durum:</strong> <span id="delegateControlInfo">Açık</span></p>
+                                <p><strong>Onaylı:</strong> <span id="delegateControlApproved">0</span></p>
+                            </div>
+                            <div class="control-actions">
+                                <button class="btn btn-success" onclick="adminPanel.toggleApplicationStatus('delegate')">
+                                    <i class="fas fa-toggle-on"></i>
+                                    <span>Değiştir</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-control-card">
+                        <div class="control-header">
+                            <h3>Delegasyon Başvuruları</h3>
+                            <div class="status-badge" id="delegationControlStatus">Açık</div>
+                        </div>
+                        <div class="control-body">
+                            <div class="control-info">
+                                <p><strong>Durum:</strong> <span id="delegationControlInfo">Açık</span></p>
+                                <p><strong>Onaylı:</strong> <span id="delegationControlApproved">0</span></p>
+                            </div>
+                            <div class="control-actions">
+                                <button class="btn btn-success" onclick="adminPanel.toggleApplicationStatus('delegation')">
+                                    <i class="fas fa-toggle-on"></i>
+                                    <span>Değiştir</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-control-card">
+                        <div class="control-header">
+                            <h3>Ekip Başvuruları</h3>
+                            <div class="status-badge" id="teamControlStatus">Açık</div>
+                        </div>
+                        <div class="control-body">
+                            <div class="control-info">
+                                <p><strong>Durum:</strong> <span id="teamControlInfo">Açık</span></p>
+                                <p><strong>Onaylı:</strong> <span id="teamControlApproved">0</span></p>
+                            </div>
+                            <div class="control-actions">
+                                <button class="btn btn-success" onclick="adminPanel.toggleApplicationStatus('team')">
+                                    <i class="fas fa-toggle-on"></i>
+                                    <span>Değiştir</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Section -->
+            <div class="notifications-section">
+                <div class="section-header">
+                    <h2>Bildirim Geçmişi</h2>
+                    <div class="notification-filters">
+                        <select id="notificationTypeFilter">
+                            <option value="all">Tümü</option>
+                            <option value="email">E-posta</option>
+                            <option value="sms">SMS</option>
+                        </select>
+                        <select id="notificationStatusFilter">
+                            <option value="all">Tüm Durumlar</option>
+                            <option value="pending">Bekleyen</option>
+                            <option value="sent">Gönderildi</option>
+                            <option value="failed">Başarısız</option>
+                        </select>
+                        <button id="clearNotificationsBtn" class="btn btn-secondary">
+                            <i class="fas fa-trash"></i> Temizle
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="notifications-grid" id="notificationsGrid">
+                    <!-- Notifications will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Detail Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Başvuru Detayları</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="applicationDetails">
+                <!-- Application details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button id="approveBtn" class="btn btn-success">Onayla</button>
+                <button id="rejectBtn" class="btn btn-danger">Reddet</button>
+                <button id="assignBtn" class="btn btn-secondary">Ata</button>
+                <button class="btn btn-secondary close-modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes Modal -->
+    <div id="notesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>İç Notlar</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <textarea id="notesTextarea" rows="6" placeholder="İç notlarınızı buraya yazın..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="saveNotesBtn" class="btn btn-primary">Kaydet</button>
+                <button class="btn btn-secondary close-modal">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Enhanced Admin Panel Styles */
+        .admin-login-section, .admin-dashboard-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--burgundy-deep) 0%, var(--burgundy-main) 100%);
+            padding: 2rem 0;
+        }
+
+        .login-container {
+            max-width: 450px;
+            margin: 5rem auto;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            padding: 3rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .login-header h2 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            color: var(--gold);
+            z-index: 2;
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 223, 0, 0.2);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+            z-index: 2;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            background: rgba(255, 223, 0, 0.2);
+        }
+
+        .dashboard-header {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+        }
+
+        .header-content h1 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+
+        .header-content p {
+            color: var(--text-light);
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 223, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gold);
+        }
+
+        .user-avatar i {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .user-details span:first-child {
+            font-weight: 700;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .user-details span:last-child {
+            font-size: 0.95rem;
+            color: var(--gold);
+            opacity: 0.9;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 223, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card.primary {
+            background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy-deep));
+            border-left: 4px solid var(--gold);
+        }
+
+        .stat-card.success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-left: 4px solid #28a745;
+        }
+
+        .stat-card.warning {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            border-left: 4px solid #ffc107;
+        }
+
+        .stat-card.danger {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            border-left: 4px solid #dc3545;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .stat-card.success .stat-icon {
+            color: #ffffff;
+        }
+
+        .stat-card.warning .stat-icon {
+            color: #ffffff;
+        }
+
+        .stat-card.danger .stat-icon {
+            color: #ffffff;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-content h3 {
+            color: var(--text-light);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .stat-content p {
+            color: var(--text-light);
+            opacity: 0.9;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .stat-change.positive {
+            color: #28a745;
+        }
+
+        .stat-change.negative {
+            color: #dc3545;
+        }
+
+        .stat-change.neutral {
+            color: #ffc107;
+        }
+
+        .applications-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filters select, .filters input {
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 0.95rem;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .filters select:focus, .filters input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 223, 0, 0.2);
+        }
+
+        .filters select option, .filters input::placeholder {
+            color: var(--text-light);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .applications-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .applications-table th {
+            background: rgba(255, 223, 0, 0.15);
+            color: var(--gold);
+            font-weight: 700;
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .applications-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 223, 0, 0.1);
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .applications-table tr:hover {
+            background: rgba(255, 223, 0, 0.05);
+        }
+
+        .status-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .status-approved {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .status-rejected {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-buttons button {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: rgba(23, 162, 184, 0.2);
+            color: #17a2b4;
+        }
+
+        .btn-view:hover {
+            background: rgba(23, 162, 184, 0.3);
+        }
+
+        .btn-edit {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .btn-edit:hover {
+            background: rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-delete {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background: rgba(220, 53, 69, 0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background: var(--burgundy-main);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 223, 0, 0.2);
+        }
+
+        .modal-header h3 {
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .close {
+            color: var(--text-white);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--gold);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 223, 0, 0.2);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filters {
+                width: 100%;
+            }
+
+            .filters select, .filters input {
+                flex: 1;
+                min-width: 150px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+
+        /* Application Controls Styles */
+        .application-controls-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .application-control-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .application-control-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 223, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .application-control-card:hover::before {
+            left: 100%;
+        }
+
+        .application-control-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 223, 0, 0.4);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 223, 0, 0.2);
+        }
+
+        .control-header h3 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .status-open {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .status-closed {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+
+        .control-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .control-info {
+            flex: 1;
+        }
+
+        .control-info p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .control-info strong {
+            color: var(--gold);
+            margin-right: 0.5rem;
+        }
+
+        .control-info span {
+            color: var(--text-white);
+            font-weight: 500;
+        }
+
+        .control-actions {
+            flex-shrink: 0;
+        }
+
+        .control-actions button {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-actions button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Notification Styles */
+        .notification {
+            background: var(--burgundy-main);
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification-success {
+            border-color: rgba(40, 167, 69, 0.5);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--text-white);
+        }
+
+        .notification-success .notification-content i {
+            color: #28a745;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            cursor: pointer;
+            padding: 0.25rem;
+            margin-left: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .control-body {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .control-actions {
+                width: 100%;
+            }
+
+            .control-actions button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Notifications Section Styles */
+        .notifications-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .notification-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .notification-filters select {
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 223, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+        }
+
+        .notifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .notification-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .notification-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .notification-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .notification-type.email {
+            background: rgba(23, 162, 184, 0.2);
+            color: #17a2b4;
+        }
+
+        .notification-type.sms {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .notification-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status-sent {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+
+        .status-failed {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+
+        .notification-content {
+            margin-bottom: 1rem;
+        }
+
+        .notification-recipient {
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .notification-message {
+            color: var(--text-white);
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .notification-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-white);
+            opacity: 0.6;
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .notification-actions button {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-resend {
+            background: rgba(23, 162, 184, 0.2);
+            color: #17a2b4;
+        }
+
+        .btn-resend:hover {
+            background: rgba(23, 162, 184, 0.3);
+        }
+
+        .btn-delete {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background: rgba(220, 53, 69, 0.3);
+        }
+
+        /* Enhanced Admin Panel Styles */
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .login-header h2 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            color: var(--gold);
+            z-index: 1;
+        }
+
+        .input-group input {
+            padding-left: 45px;
+            padding-right: 50px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .header-content h1 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .header-content p {
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 223, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .user-avatar i {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-details span:first-child {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .user-details span:last-child {
+            font-size: 0.9rem;
+            color: var(--gold);
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card.primary {
+            background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy-deep));
+            border-left: 4px solid var(--gold);
+        }
+
+        .stat-card.success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-left: 4px solid #28a745;
+        }
+
+        .stat-card.warning {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            border-left: 4px solid #ffc107;
+        }
+
+        .stat-card.danger {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            border-left: 4px solid #dc3545;
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .stat-change.positive {
+            color: #28a745;
+        }
+
+        .stat-change.negative {
+            color: #dc3545;
+        }
+
+        .stat-change.neutral {
+            color: #ffc107;
+        }
+
+    </style>
+
+    <script src="admin.js"></script>
+</body>
+</html>

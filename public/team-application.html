@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekip Başvurusu - KAALCAL26 - Kemal Atatürk Anadolu Lisesi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://via.placeholder.com/32x32/4D0000/FFDF00?text=KA">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/180x180/4D0000/FFDF00?text=KA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="application-status.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>KAALCAL26</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#basvuru" class="nav-link">Başvurular</a></li>
+                <li><a href="index.html#iletisim" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Application Page -->
+    <div class="application-page">
+        <div class="container">
+            <div class="application-header">
+                <!-- School Image Banner -->
+                <div class="school-banner">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Kemal_Ataturk_Lisesi.jpg" alt="Kemal Atatürk Anadolu Lisesi" class="school-banner-image">
+                    <div class="school-banner-overlay">
+                        <h2>Kemal Atatürk Anadolu Lisesi</h2>
+                        <p>Geleceğin Liderleri Burada Yetişiyor</p>
+                    </div>
+                </div>
+                
+                <div class="back-button" style="margin-bottom: 2rem;">
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+                    </a>
+                </div>
+
+                <h1 class="section-title">Ekip Başvurusu</h1>
+                <p class="section-subtitle">KAALCAL'26 etkinliğimizde görev almak için başvuru formunu doldurun</p>
+            </div>
+
+            <div class="application-form-container">
+                <div class="form-intro">
+                    <h2>KAALCAL'26 Ekip Başvurusu</h2>
+                    <p>28-29 Mart tarihlerinde gerçekleştirilecek olan bu çalıştay, başarılı bir etkinlik organizasyonu için tutkulu ve yetenekli ekip arkadaşları aramaktadır. Farklı departmanlarda görev alarak etkinliğin başarısına katkı sunmak isteyen tüm başvuruları bekliyoruz.</p>
+                </div>
+
+                <form class="application-form" id="teamApplicationForm">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Kişisel Bilgiler</h3>
+                        
+                        <div class="form-group">
+                            <label for="fullName">Ad – Soyad <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="adınızı ve soyadınızı giriniz">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instagram">Instagram Hesabınız <span class="required">*</span></label>
+                            <input type="text" id="instagram" name="instagram" required placeholder="@kullaniciadi">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="school">Okulunuz <span class="required">*</span></label>
+                            <input type="text" id="school" name="school" required placeholder="okulunuzun adını giriniz">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="classLevel">Sınıf Düzeyi <span class="required">*</span></label>
+                            <select id="classLevel" name="classLevel" required>
+                                <option value="">Seçiniz</option>
+                                <option value="9">9. sınıf</option>
+                                <option value="10">10. sınıf</option>
+                                <option value="11">11. sınıf</option>
+                                <option value="12">12. sınıf</option>
+                                <option value="hazirlik">Hazırlık</option>
+                                <option value="1">1. sınıf (üniversite)</option>
+                                <option value="2">2. sınıf (üniversite)</option>
+                                <option value="3">3. sınıf (üniversite)</option>
+                                <option value="4">4. sınıf (üniversite)</option>
+                                <option value="lisansustu">Lisansüstü</option>
+                                <option value="mezun">Mezun</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefon Numaranız <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="05XX XXX XX XX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="department">Katılmak İstediğiniz Departman <span class="required">*</span></label>
+                            <select id="department" name="department" required>
+                                <option value="">Seçiniz</option>
+                                <option value="pr">PR</option>
+                                <option value="media">PRESS</option>
+                                <option value="ik">İK</option>
+                                <option value="social-media">IT</option>
+                                <option value="logistics">SAHA VE LOJİSTİK</option>
+                                <option value="finans">FİNANS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Ek Bilgiler</h3>
+                        
+                        <div class="form-group">
+                            <label for="experience">İlgili Deneyimleriniz</label>
+                            <textarea id="experience" name="experience" rows="4" placeholder="Etkinlik Organizasyonu, Proje Yönetimi veya İlgili Alanlardaki Deneyimlerinizi Paylaşabilirsiniz..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivation">Ekibimize Katılma Motivasyonunuz <span class="required">*</span></label>
+                            <textarea id="motivation" name="motivation" rows="4" required placeholder="KAALCAL'26 Ekibine katılmak istemenizin nedenlerini ve beklentilerinizi açıklayınız..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="knowledge">Konuya İlişkin Bilgi ve İlginiz <span class="required">*</span></label>
+                            <textarea id="knowledge" name="knowledge" rows="4" required placeholder="seçtiğiniz alandaki bilgi birikiminizi ve ilgi alanlarınızı detaylandırınız..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additional">Eklemek İstediğiniz Bilgiler</label>
+                            <textarea id="additional" name="additional" rows="3" placeholder="başvurunuzu destekleyecek ek bilgileri veya özel yeteneklerinizi paylaşabilirsiniz..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Section -->
+                    <div class="form-section">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="agreement" name="agreement" required>
+                                <label for="agreement">KAALCAL'26 Görev Koşullarını Kabul Ediyorum <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">Etkinlik Duyurularını Almak istiyorum</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Başvuruyu Gönder
+                        </button>
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> İptal
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize application status checker
+        let appStatusChecker;
+        
+        // Check application status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the status checker
+            appStatusChecker = new ApplicationStatusChecker();
+            
+            const form = document.getElementById('teamApplicationForm');
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Check if application is open
+            if (!appStatusChecker.checkAndHandleApplicationStatus('team', form)) {
+                // If application is closed, disable submit button and show message
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-times-circle"></i> Başvurular Kapalı';
+                    submitButton.style.backgroundColor = '#6c757d';
+                    submitButton.style.cursor = 'not-allowed';
+                }
+                return;
+            }
+        });
+
+        // Form submission handler
+        document.getElementById('teamApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Double-check application status before submission
+            if (!appStatusChecker || !appStatusChecker.isApplicationOpen('team')) {
+                if (appStatusChecker) {
+                    appStatusChecker.showClosedMessage('team');
+                } else {
+                    alert('Ekip başvuruları şu anda kapalıdır.');
+                }
+                return;
+            }
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Create application object
+            const application = {
+                id: Date.now(), // Unique ID
+                type: 'team',
+                fullName: data.fullName,
+                instagram: data.instagram,
+                phone: data.phone,
+                school: data.school,
+                classLevel: data.classLevel,
+                department: data.department,
+                experience: data.experience,
+                motivation: data.motivation,
+                knowledge: data.knowledge,
+                additional: data.additional,
+                agreement: data.agreement,
+                newsletter: data.newsletter,
+                status: 'pending',
+                submittedAt: new Date().toISOString(),
+                formData: data
+            };
+            
+            // Save to localStorage
+            saveApplication(application);
+            
+            // Show success message
+            showSuccessMessage();
+            
+            // Reset form
+            this.reset();
+        });
+        
+        function saveApplication(application) {
+            // Get existing applications
+            let applications = JSON.parse(localStorage.getItem('kaalcal_applications') || '[]');
+            
+            // Add new application
+            applications.push(application);
+            
+            // Save back to localStorage
+            localStorage.setItem('kaalcal_applications', JSON.stringify(applications));
+            
+            // Log for debugging
+            console.log('Application saved:', application);
+        }
+        
+        function showSuccessMessage() {
+            // Create success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.innerHTML = `
+                <div class="success-content">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>başvurunuz başarıyla gönderildi!</h3>
+                    <p>ekip başvurunuz incelenmek üzere kaydedilmiştir. en kısa sürede size dönüş yapacağız.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="btn btn-primary">tamam</button>
+                </div>
+            `;
+            
+            // Add styles
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            
+            const successContent = successDiv.querySelector('.success-content');
+            successContent.style.cssText = `
+                background: linear-gradient(135deg, #4D0000 0%, #330000 100%);
+                border: 2px solid #FFDF00;
+                border-radius: 20px;
+                padding: 3rem;
+                text-align: center;
+                color: white;
+                max-width: 500px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            `;
+            
+            const icon = successContent.querySelector('i');
+            icon.style.cssText = `
+                font-size: 4rem;
+                color: #FFDF00;
+                margin-bottom: 1rem;
+            `;
+            
+            const h3 = successContent.querySelector('h3');
+            h3.style.cssText = `
+                color: #FFDF00;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            `;
+            
+            const p = successContent.querySelector('p');
+            p.style.cssText = `
+                margin-bottom: 2rem;
+                line-height: 1.6;
+            `;
+            
+            // Add to page
+            document.body.appendChild(successDiv);
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy-deep) 100%);
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        .application-form-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-white);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .required {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 223, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: var(--burgundy-dark);
+            color: var(--text-white);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFED4E 100%);
+            color: var(--burgundy-dark);
+            border: none;
+            padding: 18px 48px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 223, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 223, 0, 0.4);
+        }
+
+        .submit-btn:hover:before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid rgba(40, 167, 69, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .success-content i {
+            font-size: 64px;
+            color: #34a853;
+            margin-bottom: 1.5rem;
+            animation: successPulse 2s ease-in-out infinite;
+        }
+
+        .success-content h3 {
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .success-content p {
+            color: var(--text-white);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 2px solid var(--gold);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--gold);
+            color: var(--burgundy-dark);
+            transform: translateY(-2px);
+        }
+
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .application-form-container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .submit-btn {
+                padding: 16px 36px;
+                font-size: 14px;
+            }
+
+            .success-content h3 {
+                font-size: 2rem;
+            }
+
+            .success-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .application-form-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .form-label {
+                font-size: 14px;
+            }
+
+            .form-input, .form-select, .form-textarea {
+                padding: 14px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</body>
+</html>

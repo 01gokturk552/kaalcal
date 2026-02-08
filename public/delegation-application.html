@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegasyon Başvurusu - KAALCAL26 - Kemal Atatürk Anadolu Lisesi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://via.placeholder.com/32x32/4D0000/FFDF00?text=KA">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/180x180/4D0000/FFDF00?text=KA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>KAALCAL26</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#basvuru" class="nav-link">Başvuru</a></li>
+                <li><a href="index.html#iletisim" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Application Page -->
+    <div class="application-page">
+        <div class="container">
+            <div class="application-header">
+                <!-- School Image Banner -->
+                <div class="school-banner">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Kemal_Ataturk_Lisesi.jpg" alt="Kemal Atatürk Anadolu Lisesi" class="school-banner-image">
+                    <div class="school-banner-overlay">
+                        <h2>Kemal Atatürk Anadolu Lisesi</h2>
+                        <p>Geleceğin Liderleri Burada Yetişiyor</p>
+                    </div>
+                </div>
+                
+                <div class="back-button" style="margin-bottom: 2rem;">
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+                    </a>
+                </div>
+                <h1 class="section-title">Delegasyon Başvurusu</h1>
+                <p class="section-subtitle">KAALCAL'26 etkinliğine delegasyon ile katılmak için başvuru formunu doldurun</p>
+            </div>
+
+            <div class="application-form-container">
+                <div class="form-intro">
+                    <h2>KAALCAL'26 Delegasyon Başvurusu</h2>
+                    <p>28-29 Mart tarihlerinde gerçekleştirilecek olan bu çalıştay, otorite kavramını tarihsel, toplumsal ve bireysel boyutlarıyla ele almayı amaçlamaktadır. Katılımcıların farklı bakış açılarıyla tartışma ve üretim ortamına katkı sunmaları hedeflenen çalıştayda, disiplinlerarası bir yaklaşım benimsenmektedir.</p>
+                    <p><strong>Delegasyon başvuru ücretleri delege başı 550 TL'dir.</strong></p>
+                    <p>Delegasyonunuzda yer alan tüm katılımcılar için aşağıdaki bilgileri eksiksiz şekilde doldurunuz:</p>
+                    <ul>
+                        <li>Ad – Soyad</li>
+                        <li>Okul</li>
+                        <li>Sınıf Düzeyi</li>
+                        <li>Telefon Numarası</li>
+                        <li>E-posta Adresi</li>
+                    </ul>
+                </div>
+
+                <form class="application-form" id="delegationApplicationForm">
+                    <!-- Delegation Leader Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-tie"></i> Delegasyon Lideri Bilgileri</h3>
+                        
+                        <div class="form-group">
+                            <label for="leaderFullName">Ad – Soyad <span class="required">*</span></label>
+                            <input type="text" id="leaderFullName" name="leaderFullName" required placeholder="Delegasyon liderinin adı ve soyadı">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="leaderSchool">Okul <span class="required">*</span></label>
+                            <input type="text" id="leaderSchool" name="leaderSchool" required placeholder="Okul adı">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="leaderClassLevel">Sınıf Düzeyi <span class="required">*</span></label>
+                            <select id="leaderClassLevel" name="leaderClassLevel" required>
+                                <option value="">Seçiniz</option>
+                                <option value="9">9. Sınıf</option>
+                                <option value="10">10. Sınıf</option>
+                                <option value="11">11. Sınıf</option>
+                                <option value="12">12. Sınıf</option>
+                                <option value="hazirlik">Hazırlık</option>
+                                <option value="1">1. Sınıf (Üniversite)</option>
+                                <option value="2">2. Sınıf (Üniversite)</option>
+                                <option value="3">3. Sınıf (Üniversite)</option>
+                                <option value="4">4. Sınıf (Üniversite)</option>
+                                <option value="lisansustu">Lisansüstü</option>
+                                <option value="mezun">Mezun</option>
+                                <option value="ogretmen">Öğretmen</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="leaderPhone">Telefon Numarası <span class="required">*</span></label>
+                            <input type="tel" id="leaderPhone" name="leaderPhone" required placeholder="05XX XXX XX XX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="leaderEmail">E-posta Adresi <span class="required">*</span></label>
+                            <input type="email" id="leaderEmail" name="leaderEmail" required placeholder="ornek@email.com">
+                        </div>
+                    </div>
+
+                    <!-- Delegation Members Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-users"></i> Delegasyon Üyeleri</h3>
+                        
+                        <div class="form-group">
+                            <label for="delegateCount">Delegasyon Sayısı <span class="required">*</span></label>
+                            <input type="number" id="delegateCount" name="delegateCount" min="5" max="50" required placeholder="Minimum 5 kişi">
+                        </div>
+
+                        <div id="delegatesContainer">
+                            <!-- Dynamic delegate fields will be added here -->
+                        </div>
+
+                        <button type="button" id="addDelegateBtn" class="btn btn-secondary" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Delege Ekle
+                        </button>
+                    </div>
+
+                    <!-- Institution Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-university"></i> Kurum Bilgileri</h3>
+                        
+                        <div class="form-group">
+                            <label for="institutionName">Kurum Adı <span class="required">*</span></label>
+                            <input type="text" id="institutionName" name="institutionName" required placeholder="Kurumunuzun tam adı">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="institutionType">Kurum Türü <span class="required">*</span></label>
+                            <select id="institutionType" name="institutionType" required>
+                                <option value="">Seçiniz</option>
+                                <option value="lise">Lise</option>
+                                <option value="universite">Üniversite</option>
+                                <option value="dernek">Dernek</option>
+                                <option value="diger">Diğer</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-credit-card"></i> Ödeme Bilgileri</h3>
+                        
+                        <div class="form-group">
+                            <label>Toplam Ücret</label>
+                            <div class="payment-info">
+                                <p>Delege başı: <strong>450 TL</strong></p>
+                                <p id="totalFee">Toplam: <strong>0 TL</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentMethod">Ödeme Yöntemi <span class="required">*</span></label>
+                            <select id="paymentMethod" name="paymentMethod" required>
+                                <option value="">Seçiniz</option>
+                                <option value="havale">Havale/EFT</option>
+                                <option value="kredi-karti">Kredi Kartı</option>
+                                <option value="nakit">Nakit (Ön Ödeme)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Section -->
+                    <div class="form-section">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="agreement" name="agreement" required>
+                                <label for="agreement">KAALCAL'26 delegasyon koşullarını kabul ediyorum <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="paymentAgreement" name="paymentAgreement" required>
+                                <label for="paymentAgreement">Ödeme koşullarını kabul ediyorum <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">Etkinlik duyurularını almak istiyorum</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Başvuruyu Gönder
+                        </button>
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> İptal
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="application-status.js"></script>
+    <script>
+        // Check application status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('delegationApplicationForm');
+            if (!appStatusChecker.checkAndHandleApplicationStatus('delegation', form)) {
+                // If application is closed, stop further execution
+                return;
+            }
+        });
+
+        // Form submission handler
+        document.getElementById('delegationApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Double-check application status before submission
+            if (!appStatusChecker.isApplicationOpen('delegation')) {
+                appStatusChecker.showClosedMessage('delegation');
+                return;
+            }
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Create application object
+            const application = {
+                id: Date.now(), // Unique ID
+                type: 'delegation',
+                fullName: data.leaderFullName,
+                email: data.leaderEmail,
+                phone: data.leaderPhone,
+                school: data.leaderSchool,
+                classLevel: data.leaderClassLevel,
+                institutionName: data.institutionName,
+                institutionType: data.institutionType,
+                delegateCount: data.delegateCount,
+                paymentMethod: data.paymentMethod,
+                agreement: data.agreement,
+                paymentAgreement: data.paymentAgreement,
+                newsletter: data.newsletter,
+                status: 'pending',
+                submittedAt: new Date().toISOString(),
+                formData: data
+            };
+            
+            // Save to localStorage
+            saveApplication(application);
+            
+            // Show success message
+            showSuccessMessage();
+            
+            // Reset form
+            this.reset();
+        });
+        
+        function saveApplication(application) {
+            // Get existing applications
+            let applications = JSON.parse(localStorage.getItem('kaalcal_applications') || '[]');
+            
+            // Add new application
+            applications.push(application);
+            
+            // Save back to localStorage
+            localStorage.setItem('kaalcal_applications', JSON.stringify(applications));
+            
+            // Log for debugging
+            console.log('Application saved:', application);
+        }
+        
+        function showSuccessMessage() {
+            // Create success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.innerHTML = `
+                <div class="success-content">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Delegasyon Başvurunuz Başarıyla Gönderildi!</h3>
+                    <p>Başvurunuz incelenmek üzere kaydedilmiştir. En kısa sürede size dönüş yapacağız.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="btn btn-primary">Tamam</button>
+                </div>
+            `;
+            
+            // Add styles
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            
+            const successContent = successDiv.querySelector('.success-content');
+            successContent.style.cssText = `
+                background: linear-gradient(135deg, #4D0000 0%, #330000 100%);
+                border: 2px solid #FFDF00;
+                border-radius: 20px;
+                padding: 3rem;
+                text-align: center;
+                color: white;
+                max-width: 500px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            `;
+            
+            const icon = successContent.querySelector('i');
+            icon.style.cssText = `
+                font-size: 4rem;
+                color: #FFDF00;
+                margin-bottom: 1rem;
+            `;
+            
+            const h3 = successContent.querySelector('h3');
+            h3.style.cssText = `
+                color: #FFDF00;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            `;
+            
+            const p = successContent.querySelector('p');
+            p.style.cssText = `
+                margin-bottom: 2rem;
+                line-height: 1.6;
+            `;
+            
+            // Add to page
+            document.body.appendChild(successDiv);
+        }
+    </script>
+    <script>
+        // Dynamic delegate form management
+        let delegateCount = 0;
+        const delegateCountInput = document.getElementById('delegateCount');
+        const delegatesContainer = document.getElementById('delegatesContainer');
+        const addDelegateBtn = document.getElementById('addDelegateBtn');
+        const totalFeeElement = document.getElementById('totalFee');
+
+        function updateTotalFee() {
+            const count = parseInt(delegateCountInput.value) || 0;
+            const total = count * 550;
+            totalFeeElement.innerHTML = `Toplam: <strong>${total} TL</strong>`;
+        }
+
+        function addDelegateField() {
+            delegateCount++;
+            const delegateDiv = document.createElement('div');
+            delegateDiv.className = 'delegate-field';
+            delegateDiv.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Delege ${delegateCount} - Ad Soyad <span class="required">*</span></label>
+                        <input type="text" name="delegate_${delegateCount}_name" required placeholder="Ad ve soyad">
+                    </div>
+                    <div class="form-group">
+                        <label>Okul <span class="required">*</span></label>
+                        <input type="text" name="delegate_${delegateCount}_school" required placeholder="Okul adı">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Sınıf Düzeyi <span class="required">*</span></label>
+                        <select name="delegate_${delegateCount}_class" required>
+                            <option value="">Seçiniz</option>
+                            <option value="9">9. Sınıf</option>
+                            <option value="10">10. Sınıf</option>
+                            <option value="11">11. Sınıf</option>
+                            <option value="12">12. Sınıf</option>
+                            <option value="hazirlik">Hazırlık</option>
+                            <option value="1">1. Sınıf (Üniversite)</option>
+                            <option value="2">2. Sınıf (Üniversite)</option>
+                            <option value="3">3. Sınıf (Üniversite)</option>
+                            <option value="4">4. Sınıf (Üniversite)</option>
+                            <option value="lisansustu">Lisansüstü</option>
+                            <option value="mezun">Mezun</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon Numarası <span class="required">*</span></label>
+                        <input type="tel" name="delegate_${delegateCount}_phone" required placeholder="05XX XXX XX XX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>E-posta Adresi <span class="required">*</span></label>
+                    <input type="email" name="delegate_${delegateCount}_email" required placeholder="ornek@email.com">
+                </div>
+                <hr style="margin: 2rem 0; border-color: rgba(255, 223, 0, 0.2);">
+            `;
+            delegatesContainer.appendChild(delegateDiv);
+        }
+
+        delegateCountInput.addEventListener('input', updateTotalFee);
+        addDelegateBtn.addEventListener('click', addDelegateField);
+
+        // Initialize with one delegate field
+        addDelegateField();
+    </script>
+</body>
+</html>
