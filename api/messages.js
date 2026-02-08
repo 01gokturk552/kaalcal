@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // MongoDB Connection (cached)
 let cached = global.mongoose;
@@ -50,7 +50,7 @@ const contactMessageSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: () => Date.now()
     }
 });
 

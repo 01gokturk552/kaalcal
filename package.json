@@ -3,6 +3,7 @@
   "version": "1.0.0", 
   "description": "KAALCAL26 Website with Vercel Serverless Backend",
   "main": "api/contact.js",
+  "type": "module",
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'No build step needed for static site'",

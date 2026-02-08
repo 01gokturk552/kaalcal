@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
-const { body, validationResult } = require('express-validator');
+import mongoose from 'mongoose';
+import nodemailer from 'nodemailer';
+import { body, validationResult } from 'express-validator';
 
 // MongoDB Connection (cached)
 let cached = global.mongoose;
@@ -123,7 +123,6 @@ const validateContact = [
     body('message').trim().isLength({ min: 10, max: 1000 }).withMessage('Message must be between 10 and 1000 characters')
 ];
 
-// Main handler
 export default async function handler(req, res) {
     // Only allow POST requests
     if (req.method !== 'POST') {
