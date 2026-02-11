@@ -61,7 +61,7 @@
                     <p>28-29 Mart tarihlerinde gerçekleştirilecek olan bu çalıştay, başarılı bir etkinlik organizasyonu için tutkulu ve yetenekli ekip arkadaşları aramaktadır. Farklı departmanlarda görev alarak etkinliğin başarısına katkı sunmak isteyen tüm başvuruları bekliyoruz.</p>
                 </div>
 
-                <form class="application-form" id="teamApplicationForm">
+                <form class="application-form" id="teamApplicationForm" data-validate='{"teamName":["required","minLength:2","maxLength:100"],"teamLeaderName":["required","minLength:2","maxLength:100","turkishChars"],"teamLeaderEmail":["required","email"],"teamLeaderPhone":["required","phone"],"teamMembers":["required","minLength:10","maxLength:1000"],"motivation":["required","minLength:20","maxLength:2000"]}'>
                     <!-- Personal Information Section -->
                     <div class="form-section">
                         <h3><i class="fas fa-user"></i> Kişisel Bilgiler</h3>
@@ -171,6 +171,8 @@
         </div>
     </div>
 
+    <script src="error-handler.js"></script>
+    <script src="security.js"></script>
     <script>
         // Initialize application status checker
         let appStatusChecker;
