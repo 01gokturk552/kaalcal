@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAALCAL26 - Professional Landing Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+        }
+        
+        .demo-title {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .demo-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--gold);
+        }
+        
+        .demo-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .demo-card-title {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        
+        .demo-card-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .demo-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        
+        .demo-button {
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .demo-button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 223, 0, 0.3);
+        }
+        
+        .feature-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .feature-title {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--burgundy-main), var(--burgundy-dark));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-section {
+                padding: 20px;
+            }
+            
+            .demo-title {
+                font-size: 2rem;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/logo.png" alt="KAALCAL26 Logo" class="site-logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">Özellikler</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="#stats" class="nav-link">İstatistikler</a></li>
+                <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="demo-container">
+        <section class="demo-section">
+            <h1 class="demo-title">KAALCAL26 - Profesyonel Web Sitesi</h1>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; margin-bottom: 40px;">
+                Modern, kullanıcı dostu ve profesyonel bir web sitesi deneyimi
+            </p>
+            
+            <div class="demo-grid">
+                <div class="demo-card" onclick="showNotification('success', 'UI/UX özellikleri gösteriliyor')">
+                    <div class="demo-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="demo-card-title">Modern UI/UX</h3>
+                    <p class="demo-card-description">
+                        Şık tasarım, akıcı animasyonlar ve sezgisel kullanıcı arayüzü
+                    </p>
+                </div>
+                
+                <div class="demo-card" onclick="showNotification('info', 'Form özellikleri gösteriliyor')">
+                    <div class="demo-icon">
+                        <i class="fas fa-form"></i>
+                    </div>
+                    <h3 class="demo-card-title">Akıllı Formlar</h3>
+                    <p class="demo-card-description">
+                        Gerçek zamanlı doğrulama, otomatik kaydetme ve profesyonel geri bildirim
+                    </p>
+                </div>
+                
+                <div class="demo-card" onclick="showNotification('warning', 'Bildirim sistemi gösteriliyor')">
+                    <div class="demo-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="demo-card-title">Bildirim Sistemi</h3>
+                    <p class="demo-card-description">
+                        Profesyonel bildirimler, uyarılar ve kullanıcı geri bildirimleri
+                    </p>
+                </div>
+                
+                <div class="demo-card" onclick="showNotification('error', 'Hata yönetimi gösteriliyor')">
+                    <div class="demo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="demo-card-title">Güvenlik</h3>
+                    <p class="demo-card-description">
+                        XSS koruması, CSRF token'ları ve gelişmiş güvenlik önlemleri
+                    </p>
+                </div>
+                
+                <div class="demo-card" onclick="showNotification('info', 'Performans özellikleri gösteriliyor')">
+                    <div class="demo-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="demo-card-title">Performans</h3>
+                    <p class="demo-card-description">
+                        Hızlı yükleme, lazy loading ve optimize edilmiş kaynaklar
+                    </p>
+                </div>
+                
+                <div class="demo-card" onclick="showNotification('success', 'Erişilebilirlik özellikleri gösteriliyor')">
+                    <div class="demo-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3 class="demo-card-title">Erişilebilirlik</h3>
+                    <p class="demo-card-description">
+                        WCAG 2.1 uyumlu, klavye navigasyonu ve ekran okuyucu desteği
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="demo-section">
+            <h2 class="demo-title">Profesyonel Özellikler</h2>
+            
+            <div class="feature-showcase">
+                <div class="feature-item">
+                    <div class="feature-title">🎨 Modern Tasarım</div>
+                    <div class="feature-description">
+                        Şık ve profesyonel görünüm, akıcı geçişler ve modern UI bileşenleri
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-title">📱 Mobil Uyumlu</div>
+                    <div class="feature-description">
+                        Tüm cihazlarda mükemmel görünüm ve dokunmatik optimizasyon
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-title">⚡ Hızlı Performans</div>
+                    <div class="feature-description">
+                        Optimize edilmiş yükleme süreleri ve Core Web Vitals uyumluluğu
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-title">🔒 Güvenli</div>
+                    <div class="feature-description">
+                        Gelişmiş güvenlik önlemleri ve veri koruması
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-title">♿ Erişilebilir</div>
+                    <div class="feature-description">
+                        WCAG standartlarına uygun ve engelli kullanıcı dostu
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-title">🔍 SEO Optimize</div>
+                    <div class="feature-description">
+                        Arama motoru dostu yapı ve semantik HTML
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="demo-section">
+            <h2 class="demo-title">Demo Form</h2>
+            
+            <form class="demo-form" data-autosave="true">
+                <div class="form-group">
+                    <label for="demoName">Adınız Soyadınız</label>
+                    <input type="text" id="demoName" name="name" required placeholder="Adınızı ve soyadınızı girin">
+                </div>
+                
+                <div class="form-group">
+                    <label for="demoEmail">E-posta Adresiniz</label>
+                    <input type="email" id="demoEmail" name="email" required placeholder="ornek@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="demoPhone">Telefon Numaranız</label>
+                    <input type="tel" id="demoPhone" name="phone" placeholder="+90 5XX XXX XX XX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="demoMessage">Mesajınız</label>
+                    <textarea id="demoMessage" name="message" rows="4" placeholder="Mesajınızı buraya yazın..." maxlength="500"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="demo-button">
+                        <i class="fas fa-paper-plane"></i> Gönder
+                    </button>
+                    <button type="button" class="demo-button" onclick="resetDemoForm()">
+                        <i class="fas fa-redo"></i> Sıfırla
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section id="stats" class="demo-section">
+            <h2 class="demo-title">Sistem İstatistikleri</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="pageLoadTime">0ms</div>
+                    <div class="stat-label">Sayfa Yükleme Süresi</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="formValidation">100%</div>
+                    <div class="stat-label">Form Doğrulama Başarısı</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="userExperience">A+</div>
+                    <div class="stat-label">Kullanıcı Deneyimi</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="accessibility">WCAG 2.1</div>
+                    <div class="stat-label">Erişilebilirlik Seviyesi</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="error-handler.js"></script>
+    <script src="security.js"></script>
+    <script src="performance.js"></script>
+    <script src="testing.js"></script>
+    <script src="notification-system.js"></script>
+    <script src="ui-enhancer.js"></script>
+    <script src="form-enhancer.js"></script>
+    <script>
+        // Demo functions
+        function showNotification(type, message) {
+            window.notifications[type](message);
+        }
+        
+        function resetDemoForm() {
+            window.formEnhancer.resetForm('demoForm');
+            window.notifications.info('Form sıfırlandı');
+        }
+        
+        // Update stats
+        function updateStats() {
+            // Page load time
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            document.getElementById('pageLoadTime').textContent = loadTime + 'ms';
+            
+            // Simulate other stats
+            setTimeout(() => {
+                document.getElementById('formValidation').textContent = '98%';
+            }, 2000);
+        }
+        
+        // Form submission
+        document.querySelector('.demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loading = window.notifications.loading('Form gönderiliyor...');
+            
+            setTimeout(() => {
+                window.notifications.close(loading.element);
+                window.notifications.success('Form başarıyla gönderildi! Teşekkürler.');
+                this.reset();
+            }, 2000);
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            
+            // Show welcome notification
+            setTimeout(() => {
+                window.notifications.info('KAALCAL26 profesyonel web sitesine hoş geldiniz!', 'Hoş Geldiniz');
+            }, 1000);
+            
+            // Initialize mobile menu
+            initMobileNavigation();
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey && e.key === 'd') {
+                window.notifications.info('Demo sayfasındasınız', 'Bilgi');
+            }
+        });
+    </script>
+</body>
+</html>
