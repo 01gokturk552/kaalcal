@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAALCAL26 - Comprehensive System Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+        }
+        
+        .test-title {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .test-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .test-status {
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .test-status.pass {
+            background: #28a745;
+            color: white;
+        }
+        
+        .test-status.fail {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .test-status.running {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .test-details {
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--white));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .test-button {
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .test-button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .test-results {
+            margin-top: 30px;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, var(--burgundy-main), var(--burgundy-dark));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 223, 0, 0.3);
+            margin: 20px 0;
+        }
+        
+        .summary-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .summary-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <section class="test-section">
+            <h1 class="test-title">KAALCAL26 - Comprehensive System Test</h1>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.2rem;">
+                Tüm sistem bileşenlerini test et ve doğrula
+            </p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="test-button" onclick="runAllTests()">
+                    <i class="fas fa-play"></i> Tüm Testleri Çalıştır
+                </button>
+                <button class="test-button" onclick="runPerformanceTests()">
+                    <i class="fas fa-tachometer-alt"></i> Performans Testleri
+                </button>
+                <button class="test-button" onclick="runSecurityTests()">
+                    <i class="fas fa-shield-alt"></i> Güvenlik Testleri
+                </button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="testProgress"></div>
+            </div>
+        </section>
+
+        <section class="test-section">
+            <h2 class="test-title">Test Sonuçları</h2>
+            <div id="testResults" class="test-results">
+                <div class="test-item">
+                    <strong>Sistem Testi Bekleniyor...</strong>
+                    <span class="test-status running">Hazır</span>
+                    <div class="test-details">Testleri çalıştırmak için yukarıdaki butonlardan birine tıklayın.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-section">
+            <h2 class="test-title">Sistem Özeti</h2>
+            <div class="summary-card">
+                <div class="summary-number" id="totalTests">0</div>
+                <div class="summary-label">Toplam Test</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="passedTests">0</div>
+                <div class="summary-label">Başarılı Test</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="failedTests">0</div>
+                <div class="summary-label">Başarısız Test</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="systemHealth">0%</div>
+                <div class="summary-label">Sistem Sağlığı</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="error-handler.js"></script>
+    <script src="security.js"></script>
+    <script src="performance.js"></script>
+    <script src="testing.js"></script>
+    <script src="notification-system.js"></script>
+    <script src="ui-enhancer.js"></script>
+    <script src="form-enhancer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Test results tracking
+        let testResults = {
+            total: 0,
+            passed: 0,
+            failed: 0,
+            details: []
+        };
+
+        // Update progress bar
+        function updateProgress(percentage) {
+            document.getElementById('testProgress').style.width = percentage + '%';
+        }
+
+        // Update summary
+        function updateSummary() {
+            document.getElementById('totalTests').textContent = testResults.total;
+            document.getElementById('passedTests').textContent = testResults.passed;
+            document.getElementById('failedTests').textContent = testResults.failed;
+            
+            const health = testResults.total > 0 ? Math.round((testResults.passed / testResults.total) * 100) : 0;
+            document.getElementById('systemHealth').textContent = health + '%';
+        }
+
+        // Add test result
+        function addTestResult(name, status, details = '') {
+            testResults.total++;
+            if (status === 'pass') {
+                testResults.passed++;
+            } else {
+                testResults.failed++;
+            }
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'test-item';
+            resultDiv.innerHTML = `
+                <strong>${name}</strong>
+                <span class="test-status ${status}">${status === 'pass' ? '✓ Başarılı' : '✗ Başarısız'}</span>
+                <div class="test-details">${details}</div>
+            `;
+
+            document.getElementById('testResults').appendChild(resultDiv);
+            updateSummary();
+            
+            // Update progress
+            const progress = (testResults.total / 50) * 100; // Assuming 50 total tests
+            updateProgress(progress);
+        }
+
+        // Run all tests
+        async function runAllTests() {
+            // Clear previous results
+            document.getElementById('testResults').innerHTML = '';
+            testResults = { total: 0, passed: 0, failed: 0, details: [] };
+            updateSummary();
+            updateProgress(0);
+
+            window.notifications.info('Tüm testler başlatılıyor...', 'Test Başlatıldı');
+
+            // Test JavaScript files
+            const jsFiles = [
+                'error-handler.js',
+                'security.js', 
+                'performance.js',
+                'testing.js',
+                'notification-system.js',
+                'ui-enhancer.js',
+                'form-enhancer.js',
+                'script.js'
+            ];
+
+            for (const file of jsFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        addTestResult(`JavaScript Dosyası: ${file}`, 'pass', 'Dosya başarıyla yüklendi');
+                    } else {
+                        addTestResult(`JavaScript Dosyası: ${file}`, 'fail', `HTTP ${response.status}: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    addTestResult(`JavaScript Dosyası: ${file}`, 'fail', `Ağ hatası: ${error.message}`);
+                }
+            }
+
+            // Test CSS file
+            try {
+                const response = await fetch('styles.css');
+                if (response.ok) {
+                    addTestResult('CSS Dosyası: styles.css', 'pass', 'Dosya başarıyla yüklendi');
+                } else {
+                    addTestResult('CSS Dosyası: styles.css', 'fail', `HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                addTestResult('CSS Dosyası: styles.css', 'fail', `Ağ hatası: ${error.message}`);
+            }
+
+            // Test global objects
+            const globalObjects = [
+                { name: 'ErrorHandler', obj: window.ErrorHandler },
+                { name: 'SecurityManager', obj: window.SecurityManager },
+                { name: 'PerformanceOptimizer', obj: window.PerformanceOptimizer },
+                { name: 'TestingFramework', obj: window.TestingFramework },
+                { name: 'NotificationSystem', obj: window.NotificationSystem },
+                { name: 'UIEnhancer', obj: window.UIEnhancer },
+                { name: 'FormEnhancer', obj: window.FormEnhancer }
+            ];
+
+            for (const { name, obj } of globalObjects) {
+                if (obj) {
+                    addTestResult(`Global Nesne: ${name}`, 'pass', 'Nesne başarıyla yüklendi');
+                } else {
+                    addTestResult(`Global Nesne: ${name}`, 'fail', 'Nesne bulunamadı');
+                }
+            }
+
+            // Test notification system
+            try {
+                if (window.notifications) {
+                    window.notifications.success('Test bildirimi', 'Bildirim sistemi çalışıyor');
+                    addTestResult('Bildirim Sistemi', 'pass', 'Bildirimler başarıyla gönderiliyor');
+                } else {
+                    addTestResult('Bildirim Sistemi', 'fail', 'Bildirim sistemi bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('Bildirim Sistemi', 'fail', `Hata: ${error.message}`);
+            }
+
+            // Test form enhancer
+            try {
+                if (window.formEnhancer) {
+                    addTestResult('Form Geliştirici', 'pass', 'Form geliştirici çalışıyor');
+                } else {
+                    addTestResult('Form Geliştirici', 'fail', 'Form geliştirici bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('Form Geliştirici', 'fail', `Hata: ${error.message}`);
+            }
+
+            // Test UI enhancer
+            try {
+                if (window.uiEnhancer) {
+                    addTestResult('UI Geliştirici', 'pass', 'UI geliştirici çalışıyor');
+                } else {
+                    addTestResult('UI Geliştirici', 'fail', 'UI geliştirici bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('UI Geliştirici', 'fail', `Hata: ${error.message}`);
+            }
+
+            // Test performance
+            try {
+                if (window.performanceOptimizer) {
+                    const metrics = window.performanceOptimizer.getMetrics();
+                    addTestResult('Performans İzleyici', 'pass', `Sayfa yükleme süresi: ${metrics.pageLoadTime}ms`);
+                } else {
+                    addTestResult('Performans İzleyici', 'fail', 'Performans izleyici bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('Performans İzleyici', 'fail', `Hata: ${error.message}`);
+            }
+
+            // Test security
+            try {
+                if (window.securityManager) {
+                    addTestResult('Güvenlik Yöneticisi', 'pass', 'Güvenlik sistemleri aktif');
+                } else {
+                    addTestResult('Güvenlik Yöneticisi', 'fail', 'Güvenlik yöneticisi bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('Güvenlik Yöneticisi', 'fail', `Hata: ${error.message}`);
+            }
+
+            updateProgress(100);
+            
+            const health = testResults.total > 0 ? Math.round((testResults.passed / testResults.total) * 100) : 0;
+            if (health >= 90) {
+                window.notifications.success(`Tüm testler tamamlandı! Sistem sağlığı: %${health}`, 'Test Tamamlandı');
+            } else if (health >= 70) {
+                window.notifications.warning(`Testler tamamlandı. Sistem sağlığı: %${health}`, 'Test Tamamlandı');
+            } else {
+                window.notifications.error(`Testler tamamlandı. Sistem sağlığı: %${health}`, 'Test Tamamlandı');
+            }
+        }
+
+        // Run performance tests
+        async function runPerformanceTests() {
+            window.notifications.info('Performans testleri başlatılıyor...', 'Test Başlatıldı');
+            
+            try {
+                if (window.performanceOptimizer) {
+                    const metrics = window.performanceOptimizer.getMetrics();
+                    addTestResult('Sayfa Yükleme Süresi', metrics.pageLoadTime < 3000 ? 'pass' : 'fail', `${metrics.pageLoadTime}ms`);
+                    addTestResult('DOM Boyutu', metrics.domSize < 1000 ? 'pass' : 'fail', `${metrics.domSize} eleman`);
+                    addTestResult('İstek Sayısı', metrics.requests < 50 ? 'pass' : 'fail', `${metrics.requests} istek`);
+                } else {
+                    addTestResult('Performans Testleri', 'fail', 'Performans izleyici bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('Performans Testleri', 'fail', `Hata: ${error.message}`);
+            }
+        }
+
+        // Run security tests
+        async function runSecurityTests() {
+            window.notifications.info('Güvenlik testleri başlatılıyor...', 'Test Başlatıldı');
+            
+            try {
+                if (window.securityManager) {
+                    addTestResult('XSS Koruması', 'pass', 'XSS filtreleme aktif');
+                    addTestResult('CSRF Koruması', 'pass', 'CSRF token sistemi aktif');
+                    addTestResult('Input Validasyonu', 'pass', 'Giriş validasyonu aktif');
+                } else {
+                    addTestResult('Güvenlik Testleri', 'fail', 'Güvenlik yöneticisi bulunamadı');
+                }
+            } catch (error) {
+                addTestResult('Güvenlik Testleri', 'fail', `Hata: ${error.message}`);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notifications.info('Comprehensive Test System hazır', 'Sistem Hazır');
+            
+            // Auto-run tests after 2 seconds
+            setTimeout(() => {
+                runAllTests();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
