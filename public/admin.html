@@ -283,6 +283,25 @@
                     <!-- Notifications will be loaded here -->
                 </div>
             </div>
+
+            <!-- Contact Messages Section -->
+            <div class="contact-messages-section">
+                <div class="section-header">
+                    <h2>İletişim Mesajları</h2>
+                    <div class="messages-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="contactMessagesCount">0</span>
+                            <span class="stat-label">Toplam Mesaj</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="contactMessagesContainer">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Mesajlar yükleniyor...
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1050,7 +1069,7 @@
             border-radius: 20px;
             border: 2px solid rgba(255, 223, 0, 0.2);
             padding: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .notification-filters {
@@ -1066,6 +1085,67 @@
             border: 1px solid rgba(255, 223, 0, 0.3);
             background: rgba(255, 255, 255, 0.1);
             color: var(--text-white);
+        }
+
+        /* Contact Messages Styles */
+        .contact-messages-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 223, 0, 0.2);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-message {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 223, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-message:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 223, 0, 0.2);
+        }
+
+        .message-email {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .message-date {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+
+        .message-content {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
         }
 
         .notifications-grid {

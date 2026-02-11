@@ -357,11 +357,11 @@
 
             async loadMessages() {
                 try {
-                    const response = await fetch('/api/messages');
+                    const response = await fetch('/api/contact-messages');
                     const data = await response.json();
 
                     if (data.success) {
-                        this.messages = data.messages;
+                        this.messages = data.data;
                         this.renderMessages();
                         this.updateStats();
                     } else {

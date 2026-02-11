@@ -3,6 +3,7 @@ class AdminPanel {
     constructor() {
         this.currentUser = null;
         this.applications = [];
+        this.contactMessages = [];
         this.users = [];
         this.init();
     }
@@ -11,6 +12,7 @@ class AdminPanel {
         await this.loadStoredData();
         this.setupEventListeners();
         this.checkAuth();
+        this.startRealTimeUpdates();
     }
 
     // Load stored data from localStorage and database
@@ -110,6 +112,107 @@ class AdminPanel {
             }
         } catch (error) {
             console.error('Failed to load applications from database:', error);
+        }
+    }
+
+    // Load contact messages from database
+    async loadContactMessages() {
+        try {
+            const response = await fetch('/api/contact-messages');
+            const result = await response.json();
+            
+            if (result.success && result.data) {
+                this.contactMessages = result.data;
+                this.updateContactMessagesDisplay();
+                console.log(`Loaded ${result.data.length} contact messages`);
+            }
+        } catch (error) {
+            console.error('Failed to load contact messages:', error);
+        }
+    }
+
+    // Start real-time updates
+    startRealTimeUpdates() {
+        // Update applications every 10 seconds
+        setInterval(async () => {
+            await this.loadApplicationsFromDatabase();
+            await this.loadContactMessages();
+        }, 10000);
+
+        // Update immediately on page visibility change
+        document.addEventListener('visibilitychange', async () => {
+            if (!document.hidden) {
+                await this.loadApplicationsFromDatabase();
+                await this.loadContactMessages();
+            }
+        });
+
+        // Listen for storage events (cross-tab synchronization)
+        window.addEventListener('storage', async (e) => {
+            if (e.key === 'kaalcal_applications') {
+                this.applications = JSON.parse(e.newValue || '[]');
+                this.loadApplications();
+                this.updateStatistics();
+            }
+        });
+    }
+
+    // Update contact messages display
+    updateContactMessagesDisplay() {
+        const messagesContainer = document.getElementById('contactMessagesContainer');
+        const messagesCount = document.getElementById('contactMessagesCount');
+        
+        if (!messagesContainer) return;
+
+        messagesContainer.innerHTML = '';
+        
+        if (messagesCount) {
+            messagesCount.textContent = this.contactMessages.length;
+        }
+        
+        this.contactMessages.forEach(message => {
+            const messageElement = this.createContactMessageElement(message);
+            messagesContainer.appendChild(messageElement);
+        });
+    }
+
+    // Create contact message element
+    createContactMessageElement(message) {
+        const div = document.createElement('div');
+        div.className = 'contact-message';
+        div.innerHTML = `
+            <div class="message-header">
+                <strong>${message.name}</strong>
+                <span class="message-email">&lt;${message.email}&gt;</span>
+                <span class="message-date">${new Date(message.createdAt).toLocaleString('tr-TR')}</span>
+            </div>
+            <div class="message-content">${message.message}</div>
+            <div class="message-actions">
+                <button class="btn btn-small" onclick="adminPanel.deleteContactMessage('${message._id}')">Delete</button>
+            </div>
+        `;
+        return div;
+    }
+
+    // Delete contact message
+    async deleteContactMessage(messageId) {
+        if (!confirm('Bu mesajı silmek istediğinizden emin misiniz?')) return;
+
+        try {
+            const response = await fetch(`/api/contact-messages?id=${messageId}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                this.contactMessages = this.contactMessages.filter(msg => msg._id !== messageId);
+                this.updateContactMessagesDisplay();
+                this.showNotification('Mesaj başarıyla silindi', 'success');
+            } else {
+                this.showNotification('Mesaj silinemedi', 'error');
+            }
+        } catch (error) {
+            console.error('Error deleting message:', error);
+            this.showNotification('Mesaj silinirken hata oluştu', 'error');
         }
     }
 
@@ -284,6 +387,7 @@ class AdminPanel {
         this.loadApplications();
         this.loadApplicationControls();
         this.loadNotifications();
+        this.loadContactMessages();
     }
 
     // Dashboard functions
@@ -853,6 +957,10 @@ class AdminPanel {
             this.updateStatistics();
             this.loadApplications();
             this.closeModal();
+
+            // Show approval/rejection notification
+            const statusText = status === 'approved' ? 'onaylandı' : 'reddedildi';
+            this.showNotification(`Başvuru başarıyla ${statusText}: ${application.fullName}`, 'success');
 
             // Send notifications for both approved and rejected
             if (status === 'approved' || status === 'rejected') {
