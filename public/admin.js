@@ -7,14 +7,15 @@ class AdminPanel {
         this.init();
     }
 
-    init() {
-        this.loadStoredData();
+    async init() {
+        await this.loadStoredData();
         this.setupEventListeners();
         this.checkAuth();
     }
 
-    // Load stored data from localStorage
-    loadStoredData() {
+    // Load stored data from localStorage and database
+    async loadStoredData() {
+        // Load from localStorage first
         const storedApplications = localStorage.getItem('kaalcal_applications');
         const storedUsers = localStorage.getItem('kaalcal_users');
         const storedSettings = localStorage.getItem('kaalcal_settings');
@@ -22,10 +23,13 @@ class AdminPanel {
         if (storedApplications) {
             this.applications = JSON.parse(storedApplications);
         } else {
-            // Initialize with sample data
+            // Initialize with empty array
             this.applications = [];
             this.saveApplications();
         }
+
+        // Load additional applications from database
+        await this.loadApplicationsFromDatabase();
 
         // FORCE RESET: Always use default admin credentials for now
         // This ensures login works regardless of what's in localStorage
@@ -42,54 +46,71 @@ class AdminPanel {
                 id: 2,
                 username: 'ik_head',
                 password: 'ikh2829',
-                role: 'IK Head',
-                name: 'IK Yöneticisi',
-                permissions: ['view', 'approve', 'reject', 'assign']
+                role: 'İK Sorumlusu',
+                name: 'İK Sorumlusu',
+                permissions: ['view', 'approve', 'reject', 'edit']
             },
             {
                 id: 3,
-                username: 'ik_user',
-                password: 'ik2829',
-                role: 'IK',
-                name: 'IK Personeli',
-                permissions: ['view', 'approve', 'reject']
+                username: 'finance',
+                password: 'fin2829',
+                role: 'Finans Sorumlusu',
+                name: 'Finans Sorumlusu',
+                permissions: ['view', 'approve', 'edit']
+            },
+            {
+                id: 4,
+                username: 'logistics',
+                password: 'log2829',
+                role: 'Lojistik Sorumlusu',
+                name: 'Lojistik Sorumlusu',
+                permissions: ['view', 'approve', 'edit']
             }
         ];
-        this.saveUsers();
+
+        if (storedUsers) {
+            this.users = JSON.parse(storedUsers);
+        }
+
+        // Default settings
+        this.settings = {
+            maxDelegates: 1000,
+            maxTeams: 50,
+            maxDelegations: 20,
+            autoCloseOnLimit: true
+        };
 
         if (storedSettings) {
             this.settings = JSON.parse(storedSettings);
-        } else {
-            // Initialize default application settings
-            this.settings = {
-                applications: {
-                    delegate: {
-                        open: true,
-                        name: 'Delege Başvurusu',
-                        lastUpdated: new Date().toISOString(),
-                        updatedBy: 'System'
-                    },
-                    delegation: {
-                        open: true,
-                        name: 'Delegasyon Başvurusu',
-                        lastUpdated: new Date().toISOString(),
-                        updatedBy: 'System'
-                    },
-                    team: {
-                        open: false,
-                        name: 'Ekip Başvurusu',
-                        lastUpdated: new Date().toISOString(),
-                        updatedBy: 'System'
-                    }
-                }
-            };
-            this.saveSettings();
         }
     }
 
     // Save data to localStorage
     saveApplications() {
         localStorage.setItem('kaalcal_applications', JSON.stringify(this.applications));
+    }
+
+    // Load applications from database
+    async loadApplicationsFromDatabase() {
+        try {
+            const response = await fetch('/api/applications');
+            const result = await response.json();
+            
+            if (result.success && result.data) {
+                // Merge database applications with localStorage ones
+                const dbApplications = result.data;
+                const localIds = new Set(this.applications.map(app => app.id));
+                const newApplications = dbApplications.filter(app => !localIds.has(app.id));
+                
+                // Add new applications from database
+                this.applications = [...this.applications, ...newApplications];
+                this.saveApplications();
+                
+                console.log(`Loaded ${newApplications.length} new applications from database`);
+            }
+        } catch (error) {
+            console.error('Failed to load applications from database:', error);
+        }
     }
 
     saveUsers() {
@@ -823,7 +844,12 @@ class AdminPanel {
             application.updatedAt = new Date().toISOString();
             application.updatedBy = this.currentUser.name;
             
+            // Save to localStorage
             this.saveApplications();
+            
+            // Save to database
+            this.saveApplicationToDatabase(application);
+            
             this.updateStatistics();
             this.loadApplications();
             this.closeModal();
@@ -849,6 +875,27 @@ class AdminPanel {
 
             // Send notification (in real implementation)
             this.sendNotification(application, status);
+        }
+    }
+
+    // Save application to database
+    async saveApplicationToDatabase(application) {
+        try {
+            const response = await fetch(`/api/applications?id=${application.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(application)
+            });
+            
+            if (!response.ok) {
+                console.error('Failed to save application to database');
+            } else {
+                console.log('Application saved to database successfully');
+            }
+        } catch (error) {
+            console.error('Error saving application to database:', error);
         }
     }
 

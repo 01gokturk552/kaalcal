@@ -255,8 +255,31 @@
             // Save back to localStorage
             localStorage.setItem('kaalcal_applications', JSON.stringify(applications));
             
+            // Save to database
+            saveApplicationToDatabase(application);
+            
             // Log for debugging
             console.log('Application saved:', application);
+        }
+        
+        async function saveApplicationToDatabase(application) {
+            try {
+                const response = await fetch('/api/applications', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(application)
+                });
+                
+                if (response.ok) {
+                    console.log('Application saved to database successfully');
+                } else {
+                    console.error('Failed to save application to database');
+                }
+            } catch (error) {
+                console.error('Error saving application to database:', error);
+            }
         }
         
         function showSuccessMessage() {
